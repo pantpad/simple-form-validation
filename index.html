@@ -1,18 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <title>Simple Form Validation</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="form-container">
-        <form novalidate>
-            
-        </form>
+      <form novalidate id="form">
+        <div class="form-header">
+          <h2>Register</h2>
+        </div>
+        <div class="input-container">
+          <div class="input-wrapper">
+            <label for="userEmail">Email</label>
+            <input
+              type="email"
+              name="userEmail"
+              id="email"
+              required
+              minlength="8"
+            />
+            <span></span>
+          </div>
+          <div class="country-wrapper">
+            <div class="input-wrapper">
+              <label for="text1">Zip Code</label>
+              <input type="text" name="text1" id="text1" />
+              <span></span>
+            </div>
+            <div class="input-wrapper">
+              <label for="text2">Country</label>
+              <input type="text" name="text2" id="text2" />
+              <span></span>
+            </div>
+          </div>
+          <div class="password-wrapper">
+            <div class="input-wrapper">
+              <label for="userPassword">Password</label>
+              <input
+                type="password"
+                name="userPassword"
+                id="password"
+                required
+                minlength="8"
+                maxlength="20"
+                autocomplete=""
+              />
+              <span></span>
+            </div>
+            <div class="input-wrapper">
+              <label for="passwordConfirm">Confirm Password</label>
+              <input
+                type="password"
+                name="passwordConfirm"
+                id="passwordConfirm"
+                required
+                autocomplete=""
+              />
+              <span></span>
+            </div>
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <button type="button" id="resetBtn">Reset</button>
+          <button type="submit" id="submitBtn">Submit</button>
+        </div>
+      </form>
     </div>
-</body>
+  </body>
 </html>

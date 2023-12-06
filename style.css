@@ -49,4 +49,96 @@ body {
   inset: 0;
   margin: auto;
   border-radius: 8px;
+  color: #1b1f23;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.form-header{
+  /*border-radius: 8px 8px 0 0;*/
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-header h2{
+  padding: 20px;
+}
+
+.input-container{
+  margin-block-start: 20px;
+  margin-inline: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper{
+  margin-block-end: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper label{
+  font-size: 15px;
+}
+
+.input-wrapper input{
+  height: 30px;
+  outline: none;
+  border: 1px solid #aaa;
+}
+
+.country-wrapper{
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: 1fr;
+  gap: 10px;
+}
+
+.button-wrapper{
+  margin-inline:20px;
+  display: flex;
+  gap: 8px;
+  margin-block-end: 20px;
+}
+
+button{
+  flex: 1;
+  padding: 8px 12px;
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.8);
+  border-radius: 2px;
+  color: inherit;
+  font-weight: bold;
+}
+
+button#submitBtn{
+  background-color: aliceblue;
+}
+
+button#resetBtn{
+  color: aliceblue;
+  background-color: rgba(255, 0, 0, 0.66);
+}
+
+span{
+  font-size: 12px;
+}
+
+span.error{
+  color: #d90000;
+}
+
+span.warning{
+  color: orange;
+}
+
+input:valid{
+  border: 1px solid green;
 }
