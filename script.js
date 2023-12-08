@@ -97,8 +97,7 @@ function validatePassword() {
   } else {
     password.setCustomValidity("Please enter a valid e-mail address.");
     errorMessage.classList.add("error");
-    errorMessage.textContent =
-      `Please enter a valid password`;
+    errorMessage.textContent = `Please enter a valid password`;
   }
 }
 
@@ -132,6 +131,7 @@ function enableFieldListeners() {
   email.addEventListener("input", validateEmail);
   email.removeAttribute("pattern");
 
+  validatePassword();
   passwordMatch();
   passwordConfirm.addEventListener("input", passwordMatch);
   password.addEventListener("input", passwordMatch);
@@ -154,7 +154,6 @@ function getCountriesList() {
 
   xhr.onload = function () {
     const jsObject = JSON.parse(this.response);
-    const countrieList = [];
     jsObject.forEach((country) => {
       let countryDuplicate = countrieList.some((element) => {
         return element.country == country.Country;
@@ -166,13 +165,39 @@ function getCountriesList() {
           zip: country.Regex,
         });
       } else {
-        console.log(`Country ${country.Country} esiste`);
+        //console.log(`Country ${country.Country} esiste`);
         return;
       }
     });
-    console.log(jsObject);
-    console.log(countrieList);
+    // console.log(jsObject);
+    // console.log(countrieList);
+    populateCountrySelector();
   };
 
   xhr.send();
+}
+const zipCode = document.getElementById("zip");
+const selectCountry = document.getElementById("country");
+const countrieList = [];
+
+function populateCountrySelector() {
+  countrieList.forEach((item) => {
+    const newOption = document.createElement("option");
+    newOption.value = item.country;
+    newOption.textContent = item.country;
+    selectCountry.appendChild(newOption);
+  });
+}
+
+getCountriesList();
+
+function returnZipFromSelectCountry() {
+  return countrieList.find((item) => item.country == selectCountry.value);
+}
+
+function doesItMatchTheZipCode() {
+  const currentRegex = new RegExp(returnZipFromSelectCountry().zip);
+  //console.log(currentRegex);
+  //console.log(zipCode.value);
+  return currentRegex.test(zipCode.value);
 }

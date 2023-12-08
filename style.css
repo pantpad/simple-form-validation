@@ -43,7 +43,7 @@ body {
 .form-container {
   width: 400px;
   height: 600px;
-  background-color: rgba(0, 0,  0,  0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
   position: absolute;
   inset: 0;
@@ -52,14 +52,14 @@ body {
   color: #1b1f23;
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
 }
 
-.form-header{
+.form-header {
   /*border-radius: 8px 8px 0 0;*/
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   display: flex;
@@ -67,11 +67,11 @@ form{
   align-items: center;
 }
 
-.form-header h2{
+.form-header h2 {
   padding: 20px;
 }
 
-.input-container{
+.input-container {
   margin-block-start: 20px;
   margin-inline: 20px;
   flex: 1;
@@ -79,37 +79,45 @@ form{
   flex-direction: column;
 }
 
-.input-wrapper{
+.input-wrapper {
   margin-block-end: 20px;
   display: flex;
   flex-direction: column;
 }
 
-.input-wrapper label{
+.input-wrapper label {
   font-size: 15px;
 }
 
-.input-wrapper input{
+.input-wrapper input {
   height: 30px;
   outline: none;
   border: 1px solid #aaa;
 }
 
-.country-wrapper{
+.input-wrapper select {
+  height: 30px;
+  outline: none;
+  border: 1px solid #aaa;
+  background-color: white;
+  max-width: 250px;
+}
+
+.country-wrapper {
   display: grid;
   grid-template-columns: 100px 1fr;
   grid-template-rows: 1fr;
   gap: 10px;
 }
 
-.button-wrapper{
-  margin-inline:20px;
+.button-wrapper {
+  margin-inline: 20px;
   display: flex;
   gap: 8px;
   margin-block-end: 20px;
 }
 
-button{
+button {
   flex: 1;
   padding: 8px 12px;
   box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.8);
@@ -118,27 +126,27 @@ button{
   font-weight: bold;
 }
 
-button#submitBtn{
+button#submitBtn {
   background-color: aliceblue;
 }
 
-button#resetBtn{
+button#resetBtn {
   color: aliceblue;
   background-color: rgba(255, 0, 0, 0.66);
 }
 
-span{
+span {
   font-size: 12px;
 }
 
-span.error{
+span.error {
   color: #d90000;
 }
 
-span.warning{
+span.warning {
   color: orange;
 }
 
-input:valid{
+input:valid {
   border: 1px solid green;
 }
