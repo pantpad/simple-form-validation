@@ -21,19 +21,19 @@
               name="userEmail"
               id="email"
               required
-              minlength="8"
+              pattern=""
             />
             <span></span>
           </div>
           <div class="country-wrapper">
             <div class="input-wrapper">
               <label for="text1">Zip Code</label>
-              <input type="text" name="text1" id="text1" />
+              <input type="text" name="text1" id="text1" required pattern="" />
               <span></span>
             </div>
             <div class="input-wrapper">
               <label for="text2">Country</label>
-              <input type="text" name="text2" id="text2" />
+              <input type="text" name="text2" id="text2" required pattern="" />
               <span></span>
             </div>
           </div>
@@ -48,6 +48,7 @@
                 minlength="8"
                 maxlength="20"
                 autocomplete=""
+                pattern=""
               />
               <span></span>
             </div>
@@ -59,6 +60,7 @@
                 id="passwordConfirm"
                 required
                 autocomplete=""
+                pattern=""
               />
               <span></span>
             </div>

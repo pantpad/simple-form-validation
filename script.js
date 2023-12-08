@@ -87,8 +87,6 @@ function passwordMatch() {
     passwordConfirm.parentElement.querySelector("span").classList.add("error");
   }
 }
-// const input = new HTMLInputElement();
-// input.validity.valid = false;
 
 function validatePassword() {
   const errorMessage = password.parentElement.querySelector("span");
@@ -121,22 +119,30 @@ function validatePassword() {
 }
 
 function validateEmail() {
-  if (email.checkValidity()) {
+  if (checkRegexMail()) {
+    email.setCustomValidity("");
     email.parentElement.querySelector("span").textContent = "";
     email.parentElement.querySelector("span").classList.remove("error");
   } else {
+    email.setCustomValidity("Please enter a valid e-mail address.");
     email.parentElement.querySelector("span").classList.add("error");
-    if (email.validity.typeMismatch) {
-      email.parentElement.querySelector("span").textContent =
-        "Please enter a valid e-mail address.";
-    }
+    email.parentElement.querySelector("span").textContent =
+      "Please enter a valid e-mail address.";
   }
 }
 
+function checkRegexMail() {
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  return emailRegex.test(email.value);
+}
+
 function enableFieldListeners() {
+  removePatterns();
   password.addEventListener("input", validatePassword);
   email.addEventListener("input", validateEmail);
+  email.removeAttribute("pattern");
 
+  passwordMatch();
   passwordConfirm.addEventListener("input", passwordMatch);
   password.addEventListener("input", passwordMatch);
 }
@@ -145,4 +151,38 @@ function disableFieldListeners() {
   passwordConfirm.removeEventListener("input", sonoAttivo);
   password.removeEventListener("input", sonoAttivo);
   email.removeEventListener("input", sonoAttivo);
+}
+
+function removePatterns() {
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => input.removeAttribute("pattern"));
+}
+
+function getCountriesList() {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "./countries.json", true);
+
+  xhr.onload = function () {
+    const jsObject = JSON.parse(this.response);
+    const countrieList = [];
+    jsObject.forEach((country) => {
+      let countryDuplicate = countrieList.some((element) => {
+        return element.country == country.Country;
+      });
+
+      if (!countryDuplicate) {
+        countrieList.push({
+          country: country.Country,
+          zip: country.Regex,
+        });
+      } else {
+        console.log(`Country ${country.Country} esiste`);
+        return;
+      }
+    });
+    console.log(jsObject);
+    console.log(countrieList);
+  };
+
+  xhr.send();
 }
