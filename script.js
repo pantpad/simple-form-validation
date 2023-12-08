@@ -130,7 +130,9 @@ function enableFieldListeners() {
   password.addEventListener("input", validatePassword);
   email.addEventListener("input", validateEmail);
   email.removeAttribute("pattern");
+  zipCode.addEventListener("input", validateZip);
 
+  validateZip();
   validatePassword();
   passwordMatch();
   passwordConfirm.addEventListener("input", passwordMatch);
@@ -196,8 +198,22 @@ function returnZipFromSelectCountry() {
 }
 
 function doesItMatchTheZipCode() {
+  if (selectCountry.value == "") return false;
   const currentRegex = new RegExp(returnZipFromSelectCountry().zip);
-  //console.log(currentRegex);
-  //console.log(zipCode.value);
+  console.log(currentRegex);
+  console.log(zipCode.value);
   return currentRegex.test(zipCode.value);
+}
+
+function validateZip() {
+  if (doesItMatchTheZipCode()) {
+    zipCode.setCustomValidity("");
+    zipCode.parentElement.querySelector("span").textContent = "";
+    zipCode.parentElement.querySelector("span").classList.remove("error");
+  } else {
+    zipCode.setCustomValidity("Please enter a valid zip code");
+    zipCode.parentElement.querySelector("span").classList.add("error");
+    zipCode.parentElement.querySelector("span").textContent =
+      "Please enter a valid zip code";
+  }
 }
