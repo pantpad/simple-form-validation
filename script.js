@@ -90,31 +90,15 @@ function passwordMatch() {
 
 function validatePassword() {
   const errorMessage = password.parentElement.querySelector("span");
-  if (password.checkValidity()) {
+  if (checkRegexPassword()) {
+    password.setCustomValidity("");
     errorMessage.textContent = "";
     errorMessage.classList.remove("error");
   } else {
-    password.parentElement.querySelector("span").classList.add("error");
-    if (password.validity.valueMissing) {
-      errorMessage.textContent = `Password cannot be empty`;
-      errorMessage.classList.add("error");
-    }
-    if (password.validity.patternMismatch) {
-      errorMessage.textContent = `Password pattern is not correct!`;
-      errorMessage.classList.add("error");
-    }
-    if (password.validity.tooLong) {
-      errorMessage.textContent = `Password too long, maximum 20 chars`;
-      errorMessage.classList.add("error");
-    }
-    if (password.validity.tooShort) {
-      errorMessage.textContent = `Password too short, minimum 8 chars`;
-      errorMessage.classList.add("error");
-    }
-    if (password.validity.typeMismatch) {
-      errorMessage.textContent = `Invalid Password`;
-      errorMessage.classList.add("error");
-    }
+    password.setCustomValidity("Please enter a valid e-mail address.");
+    errorMessage.classList.add("error");
+    errorMessage.textContent =
+      `Please enter a valid password`;
   }
 }
 
@@ -134,6 +118,12 @@ function validateEmail() {
 function checkRegexMail() {
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   return emailRegex.test(email.value);
+}
+
+function checkRegexPassword() {
+  const passwordRegex =
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+  return passwordRegex.test(password.value);
 }
 
 function enableFieldListeners() {
