@@ -40,10 +40,10 @@ function showInputError(input) {
 }
 
 submitBtn.addEventListener("click", (e) => {
-  if (validateAllInputs(email, password, passwordConfirm)) {
+  if (validateAllInputs(email, password, passwordConfirm, zipCode)) {
     console.log("valido!");
   } else {
-    showErrors(email, password, passwordConfirm);
+    showErrors(email, password, passwordConfirm,zipCode);
     enableFieldListeners();
     e.preventDefault();
   }
@@ -214,6 +214,6 @@ function validateZip() {
     zipCode.setCustomValidity("Please enter a valid zip code");
     zipCode.parentElement.querySelector("span").classList.add("error");
     zipCode.parentElement.querySelector("span").textContent =
-      "Please enter a valid zip code";
+      "Invalid zip code";
   }
 }
